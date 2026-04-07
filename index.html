@@ -2,629 +2,596 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>我的作品集 | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>个人作品集 | 古风雅集</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Segoe UI", sans-serif;
+      font-family: "Microsoft YaHei", "PingFang SC", "KaiTi", "SimSun", serif;
     }
+
     body {
-      background: #f5f7fa;
-      color: #333;
-      padding: 2rem;
+      background: #f6f1e7;
+      color: #2b231d;
+      padding: 1.5rem;
+      min-height: 100vh;
+      background-image: url("https://picsum.photos/id/175/1600/2000");
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: soft-light;
+      background-opacity: 0.1;
     }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
+      width: 100%;
     }
+
+    /* 标题区：书法 + 祥云边框 */
     header {
+      position: relative;
+      background: rgba(255, 252, 247, 0.96);
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.2rem;
+      border: 1px solid #d4b89a;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    header::before, header::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background-image: url('https://picsum.photos/id/331/200/200');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    header::before {
+      top: -20px;
+      left: -20px;
+      transform: rotate(-20deg);
+    }
+    header::after {
+      bottom: -20px;
+      right: -20px;
+      transform: rotate(180deg);
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #eee;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
+
+    /* 书法标题 */
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: #3d2a19;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      font-family: "KaiTi", "STKaiti", serif;
+    }
+
     .admin-btn {
-      padding: 8px 16px;
-      background: #4a6cf7;
-      color: white;
+      padding: 10px 20px;
+      background: #7a4b26;
+      color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: 0.3s;
+      white-space: nowrap;
+      letter-spacing: 1px;
     }
     .admin-btn:hover {
-      background: #3a5ce7;
+      background: #5a3519;
     }
+
+    /* 模块：回纹 + 水墨边框 */
     .section {
-      background: white;
-      padding: 1.5rem;
+      position: relative;
+      background: rgba(255,252,247,0.96);
+      padding: 2rem;
       border-radius: 12px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      border: 1px solid #d4b89a;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
     }
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px dashed #d4b89a;
+      border-radius: 8px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .section > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 标题：书法小标题 + 左竖线 */
     h2 {
-      margin-bottom: 1rem;
-      color: #2d3748;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      margin-bottom: 1.4rem;
+      color: #3d2a19;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: bold;
+      font-family: "KaiTi", "STKaiti", serif;
+      letter-spacing: 2px;
+      padding-left: 12px;
+      border-left: 5px solid #8c5a3c;
     }
-    /* 个人简介样式 */
+
     #profileText {
-      line-height: 1.6;
-      color: #4a5568;
+      line-height: 1.9;
+      color: #4a3b2e;
+      font-size: 1rem;
     }
-    /* 分类标签样式 */
+
+    /* 国风标签 */
     .tags-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
+      gap: 0.7rem;
+      margin-bottom: 1.4rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
     }
     .tag {
-      padding: 4px 12px;
-      background: #e8f4f8;
-      color: #4a6cf7;
-      border-radius: 20px;
-      font-size: 0.9rem;
+      padding: 8px 18px;
+      background: #f3e9dd;
+      color: #6d442b;
+      border: 1px solid #d4b89a;
+      border-radius: 30px;
+      font-size: 0.95rem;
       cursor: pointer;
       transition: all 0.3s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-family: "KaiTi", serif;
     }
     .tag.active {
-      background: #4a6cf7;
-      color: white;
+      background: #7a4b26;
+      color: #fff;
+      border-color: #7a4b26;
     }
     .tag:hover {
-      opacity: 0.8;
+      background: #e9d9c5;
     }
-    /* 作品列表样式 */
+
+    /* 作品布局：PC 3列 / 手机 1列 */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
     }
+
+    /* 卡片：水墨风 + 祥云暗纹 */
     .card {
-      padding: 0;
-      border: 1px solid #eee;
-      border-radius: 8px;
+      position: relative;
+      background: #fff;
+      border-radius: 12px;
       overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: 0.3s;
       cursor: pointer;
+      border: 1px solid #e0d0bc;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://picsum.photos/id/331/300/300');
+      background-size: 120px;
+      background-repeat: repeat;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
     }
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(110, 70, 40, 0.12);
     }
+
     .card-img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
-      border-bottom: 1px solid #eee;
+      display: block;
+      border-bottom: 1px solid #e0d0bc;
+      position: relative;
+      z-index: 1;
     }
+
     .card-content {
-      padding: 1rem;
+      padding: 1.4rem;
+      position: relative;
+      z-index: 1;
     }
+
+    .card h3 {
+      color: #3d2a19;
+      font-size: 1.15rem;
+      margin-bottom: 0.7rem;
+      font-weight: bold;
+      font-family: "KaiTi", serif;
+    }
+
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.3rem;
-      margin: 0.5rem 0;
+      gap: 0.4rem;
+      margin: 0.7rem 0;
     }
     .card-tag {
-      padding: 2px 8px;
-      background: #f0f8fb;
-      color: #38b2ac;
+      padding: 3px 9px;
+      background: #f7efe5;
+      color: #8c5a3c;
       border-radius: 12px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
+      border: 1px solid #e0d0bc;
     }
-    .card h3 {
-      margin-bottom: 0.5rem;
-      color: #2d3748;
-    }
+
     .card-desc {
-      color: #718096;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 0.5rem;
+      color: #5a4a3f;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
-    /* 编辑区域样式 */
+
+    /* 按钮国风 */
+    .admin-edit, .admin-delete, .add-btn, .save-btn, .cancel-btn, .detail-btn {
+      border-radius: 6px;
+      font-size: 0.85rem;
+      padding: 7px 14px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: inherit;
+    }
+    .add-btn {
+      background: #d4b89a;
+      color: #2b231d;
+    }
+    .save-btn {
+      background: #6b8f5f;
+      color: #fff;
+    }
+    .cancel-btn, .admin-delete {
+      background: #a15a5a;
+      color: #fff;
+    }
+    .admin-edit {
+      background: #8c5a3c;
+      color: #fff;
+    }
+    .detail-btn {
+      background: #7a4b26;
+      color: #fff;
+    }
+
     .edit-area {
       display: none;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid #eee;
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #e0d0bc;
     }
-    input, textarea, select {
+    input, textarea {
       width: 100%;
-      padding: 8px 12px;
-      margin: 6px 0;
-      border: 1px solid #ddd;
+      padding: 11px 14px;
+      margin: 9px 0;
+      border: 1px solid #d4b89a;
       border-radius: 6px;
-      font-size: 0.95rem;
-    }
-    textarea {
-      resize: vertical;
+      background: #fff;
+      font-family: inherit;
     }
     .btn-group {
       display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-top: 0.7rem;
     }
-    .save-btn {
-      background: #28a745;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .save-btn:hover {
-      background: #218838;
-    }
-    .cancel-btn {
-      background: #dc3545;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .cancel-btn:hover {
-      background: #c82333;
-    }
-    .add-btn {
-      background: #ffc107;
-      color: #333;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.3s;
-    }
-    .add-btn:hover {
-      background: #e0a800;
-    }
-    .admin-edit {
-      background: #17a2b8;
-      color: white;
-      padding: 4px 8px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      margin-right: 0.5rem;
-    }
-    .admin-delete {
-      background: #dc3545;
-      color: white;
-      padding: 4px 8px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-    /* 详情页样式 */
+
+    /* 详情弹窗：浓古风 */
     .detail-modal {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.7);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 999;
+      z-index: 9999;
       padding: 1rem;
     }
     .detail-content {
-      background: white;
-      width: 100%;
+      background: #fff;
       max-width: 800px;
-      border-radius: 12px;
+      width: 100%;
+      border-radius: 14px;
       overflow: hidden;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid #d4b89a;
       position: relative;
     }
+    .detail-content::before {
+      content: '';
+      position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px dashed #d4b89a;
+      border-radius: 8px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
     .close-detail {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
+      top: 1rem; right: 1rem;
+      font-size: 1.6rem;
+      color: #7a4b26;
       cursor: pointer;
-      color: #718096;
-      transition: color 0.3s;
+      background: #fff;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      border: 1px solid #d4b89a;
     }
-    .close-detail:hover {
-      color: #dc3545;
-    }
+
     .detail-img {
       width: 100%;
-      height: 400px;
+      height: clamp(220px, 45vw, 400px);
       object-fit: cover;
+      position: relative;
+      z-index: 1;
     }
     .detail-info {
-      padding: 1.5rem;
-    }
-    .detail-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1rem 0;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
     }
     .detail-desc {
-      line-height: 1.8;
-      color: #4a5568;
-      margin-bottom: 1rem;
+      line-height: 2;
+      color: #3d2a19;
+      font-size: 1.05rem;
     }
-    .detail-btn {
-      padding: 8px 16px;
-      background: #4a6cf7;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .detail-btn:hover {
-      background: #3a5ce7;
-    }
-    /* 适配移动端 */
+
+    /* 移动端适配 */
     @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-      .grid {
-        grid-template-columns: 1fr;
-      }
-      .detail-img {
-        height: 250px;
-      }
+      body { padding: 1rem; }
+      .grid { grid-template-columns: 1fr; }
+      .section { padding: 1.5rem; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      header { padding: 1.4rem 1.6rem; }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <h1>我的作品集</h1>
+<div class="container">
+  <header>
+    <div class="header-inner">
+      <h1>古风 · 作品集</h1>
       <button class="admin-btn" id="adminBtn">管理员登录</button>
-    &lt;/header&gt;
-
-    <!-- 个人资料 -->
-    <div class="section">
-      <h2>个人简介</h2>
-      <p id="profileText">我是一名设计师/开发者，专注创意作品与前端实现，擅长将想法转化为可视化的作品，深耕相关领域多年，积累了丰富的项目经验。</p>
-      <div class="edit-area" id="profileEdit">
-        <textarea id="profileInput" rows="4"></textarea>
-        <div class="btn-group">
-          <button class="save-btn" onclick="saveProfile()">保存</button>
-          <button class="cancel-btn" onclick="cancelEdit('profile')">取消</button>
-        </div>
-      </div>
-      <button class="admin-edit edit-area" onclick="toggleEdit('profile')">编辑个人简介</button>
     </div>
+  </header>
 
-   <!-- 作品列表 + 分类标签 -->
-    <div class="section">
-      <h2>我的作品</h2>
-      <div class="tags-container" id="tagsContainer">
-        <div class="tag active" data-tag="all">全部作品</div>
-      </div>
-      <button class="add-btn edit-area" id="addProjectBtn" onclick="addProject()">添加新作品</button>
-      <div class="grid" id="projectsList"></div>
-    </div&gt;
-  &lt;/div&gt;
-
-  <!-- 作品详情页弹窗 -->
-  <div class="detail-modal" id="detailModal">
-    <div class="detail-content">
-      <span class="close-detail" onclick="closeDetail()">&times;</span>
-      <img class="detail-img" id="detailImg" src="" alt="作品图片">
-      <div class="detail-info">
-        <h2 id="detailTitle"></h2>
-        <div class="detail-tags" id="detailTags"></div>
-        <p class="detail-desc" id="detailDesc"></p>
-        <button class="detail-btn" onclick="closeDetail()">关闭详情</button>
+  <div class="section">
+    <h2>个人简介</h2>
+    <p id="profileText">专注国风文化创作与设计，致力于传统文化现代表达。</p>
+    <div class="edit-area" id="profileEdit">
+      <textarea id="profileInput" rows="4"></textarea>
+      <div class="btn-group">
+        <button class="save-btn" onclick="saveProfile()">保存</button>
+        <button class="cancel-btn" onclick="cancelEdit('profile')">取消</button>
       </div>
     </div>
+    <button class="admin-edit edit-area" onclick="toggleEdit('profile')">编辑简介</button>
   </div>
 
-  <script>
-    // ====================== 配置区 ======================
-    // 【你可以自己改密码】
-    const ADMIN_PASSWORD = "123456";
-    // 初始数据（可直接修改，也可登录后在线编辑）
-    let profile = "我是一名设计师/开发者，专注创意作品与前端实现，擅长将想法转化为可视化的作品，深耕相关领域多年，积累了丰富的项目经验。";
-    // 作品分类标签（自动渲染，可新增/删除）
-    let tags = ["网页设计", "APP界面", "UI设计", "前端开发"];
-    // 初始作品（包含图片、标签、详情）
-    let projects = [
-      {
-        title: "响应式企业官网设计",
-        desc: "为某科技公司设计的响应式官网，适配电脑、平板、手机等所有设备，整体风格简约大气，突出企业科技感，包含首页、关于我们、产品展示、联系我们等页面，优化了用户浏览体验和加载速度。",
-        img: "https://picsum.photos/seed/web1/600/400", // 随机图片，可替换为自己的图片链接
-        tags: ["网页设计", "前端开发"],
-        detail: "该项目是为一家专注于人工智能领域的科技公司打造的企业官网，需求是突出企业科技感、简洁易操作，同时适配多终端。设计上采用了深蓝色为主色调，搭配浅灰色作为辅助色，体现科技与专业；布局上采用模块化设计，首页突出核心产品和企业优势，产品展示页采用卡片式布局，方便用户快速浏览。开发上使用HTML、CSS、JS实现响应式布局，引入了轻量化框架优化加载速度，最终交付了完整的静态网站，获得客户高度认可。"
-      },
-      {
-        title: "社交类APP高保真原型",
-        desc: "一款社交类产品的高保真UI原型，包含注册登录、首页、好友列表、聊天界面、个人中心等核心页面，风格清新活泼，符合年轻用户群体审美，注重交互体验和视觉统一性。",
-        img: "https://picsum.photos/seed/app1/600/400",
-        tags: ["APP界面", "UI设计"],
-        detail: "该项目是为一款面向大学生的社交APP设计的高保真原型，核心需求是满足大学生的社交、学习、娱乐需求，界面风格需清新、活泼，符合年轻群体的审美。设计过程中，首先进行了用户调研，了解目标用户的使用习惯和偏好，确定了浅色系为主色调，搭配明亮的辅助色，增强视觉冲击力；交互上优化了页面跳转逻辑，简化操作步骤，提升用户体验；核心页面均做了详细的原型设计，包括按钮状态、弹窗提示、加载动画等细节，最终交付了完整的高保真原型和设计规范，为后续开发提供了清晰的参考。"
-      },
-      {
-        title: "电商平台UI设计",
-        desc: "一款综合电商平台的UI设计，包含首页、商品列表、商品详情、购物车、结算页面等，风格简洁明了，突出商品展示，优化了用户购物流程，提升转化率。",
-        img: "https://picsum.photos/seed/shop1/600/400",
-        tags: ["UI设计", "网页设计"],
-        detail: "该项目是为一款综合电商平台设计的UI界面，核心需求是突出商品展示、简化购物流程、提升用户购物体验和转化率。设计上采用了白色为主色调，搭配橙色作为辅助色（促进消费决策），布局上采用分栏设计，首页突出热门商品、促销活动，商品详情页清晰展示商品信息、评价和相关推荐；交互上优化了筛选、搜索、加入购物车等核心操作，减少用户操作步骤；同时设计了完整的移动端适配界面，确保用户在手机端也能获得良好的购物体验，最终交付了全套UI设计稿和设计规范。"
-      }
-    ];
+  <div class="section">
+    <h2>作品展示</h2>
+    <div class="tags-container" id="tagsContainer">
+      <div class="tag active" data-tag="all">全部</div>
+    </div>
+    <button class="add-btn edit-area" onclick="addProject()">添加作品</button>
+    <div class="grid" id="projectsList"></div>
+  </div>
+</div>
 
-    // ====================== 渲染页面（核心函数） ======================
-    // 渲染个人简介
-    function renderProfile() {
-      document.getElementById("profileText").innerText = profile;
-      document.getElementById("profileInput").value = profile;
-    }
+<!-- 详情弹窗 -->
+<div class="detail-modal" id="detailModal">
+  <div class="detail-content">
+    <span class="close-detail" onclick="closeDetail()">&times;</span>
+    <img class="detail-img" id="detailImg">
+    <div class="detail-info">
+      <h2 id="detailTitle"></h2>
+      <div class="detail-tags" id="detailTags"></div>
+      <p class="detail-desc" id="detailDesc"></p>
+      <button class="detail-btn" onclick="closeDetail()">关闭</button>
+    </div>
+  </div>
+</div>
 
-    // 渲染分类标签
-    function renderTags() {
-      const tagsContainer = document.getElementById("tagsContainer");
-      // 清空原有标签（保留“全部作品”）
-      tagsContainer.innerHTML = '<div class="tag active" data-tag="all">全部作品</div>';
-      // 渲染所有标签
-      tags.forEach(tag => {
-        const tagEl = document.createElement("div");
-        tagEl.className = "tag";
-        tagEl.dataset.tag = tag;
-        tagEl.innerText = tag;
-        // 标签点击筛选作品
-        tagEl.onclick = () => {
-          document.querySelectorAll(".tag").forEach(el => el.classList.remove("active"));
-          tagEl.classList.add("active");
-          const selectedTag = tagEl.dataset.tag;
-          filterProjects(selectedTag);
-        };
-        tagsContainer.appendChild(tagEl);
-      });
-    }
+<script>
+const ADMIN_PASSWORD = "123456";
+let profile = "专注国风文化创作与设计，致力于传统文化现代表达。";
+let tags = ["国风插画", "文创设计", "UI设计", "摄影", "书法"];
+let projects = [
+  {
+    title: "国风山水插画",
+    desc: "以传统水墨为骨，现代色彩为翼，呈现东方意境美学。",
+    img: "https://picsum.photos/id/18/600/400",
+    tags: ["国风插画","文创设计"],
+    detail: "本作品以传统山水画为灵感，结合现代扁平风格，用柔和的大地色系呈现山水意境，适合文创周边、包装、海报等多场景使用。"
+  },{
+    title: "新中式文创礼盒",
+    desc: "融合传统纹样与现代简约设计，打造雅致国风礼盒。",
+    img: "https://picsum.photos/id/1048/600/400",
+    tags: ["文创设计"],
+    detail: "整体采用木纹、祥云、回纹等经典元素，配色沉稳雅致，适合节日礼品、伴手礼、企业定制等场景，兼具文化感与实用性。"
+  },{
+    title: "古风摄影作品集",
+    desc: "以园林、古建筑为场景，拍摄东方意境人像与风光。",
+    img: "https://picsum.photos/id/164/600/400",
+    tags: ["摄影","国风插画"],
+    detail: "拍摄于古典园林，用光柔和，色调偏暖，突出东方含蓄之美，适合用于画册、展览、新媒体传播。"
+  }
+];
 
-    // 筛选作品（根据标签）
-    function filterProjects(tag) {
-      const projectCards = document.querySelectorAll(".card");
-      projectCards.forEach(card => {
-        const cardTags = card.dataset.tags.split(",");
-        if (tag === "all" || cardTags.includes(tag)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-
-    // 渲染作品列表
-    function renderProjects() {
-      const list = document.getElementById("projectsList");
-      list.innerHTML = "";
-      projects.forEach((item, i) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.dataset.tags = item.tags.join(",");
-        // 作品卡片内容（包含图片、标题、标签、简介）
-        card.innerHTML = `
-          <img src="${item.img}" alt="${item.title}" class="card-img">
-          <div class="card-content">
-            <h3>${item.title}</h3>
-            <div class="card-tags">
-              ${item.tags.map(t => `<div class="card-tag">${t}</div>`).join("")}
-            </div>
-            <p class="card-desc">${item.desc.substring(0, 80)}...</p>
-            <div class="edit-area" style="border-top: none; margin-top: 0.5rem; padding-top: 0.5rem;">
-              <button class="admin-edit" onclick="toggleProjectEdit(${i})">编辑作品</button>
-              <button class="admin-delete" onclick="deleteProject(${i})">删除作品</button>
-            </div>
-          </div>
-        `;
-        // 点击卡片打开详情页
-        card.onclick = (e) => {
-          // 点击编辑/删除按钮时，不打开详情页
-          if (!e.target.classList.contains("admin-edit") && !e.target.classList.contains("admin-delete")) {
-            openDetail(i);
-          }
-        };
-        list.appendChild(card);
-
-        // 编辑作品的区域（默认隐藏）
-        const editArea = document.createElement("div");
-        editArea.className = "edit-area";
-        editArea.id = `projectEdit${i}`;
-        editArea.innerHTML = `
-          <input type="text" id="pTitle${i}" placeholder="作品标题" value="${item.title}">
-          <textarea id="pDesc${i}" rows="3" placeholder="作品简介">${item.desc}</textarea>
-          <input type="text" id="pImg${i}" placeholder="作品图片链接" value="${item.img}">
-          <input type="text" id="pTags${i}" placeholder="作品标签（用逗号分隔，如：网页设计,UI设计）" value="${item.tags.join(",")}">
-          <textarea id="pDetail${i}" rows="4" placeholder="作品详情">${item.detail}</textarea>
-          <div class="btn-group">
-            <button class="save-btn" onclick="saveProject(${i})">保存作品</button>
-            <button class="cancel-btn" onclick="cancelEdit('project', ${i})">取消</button>
-          </div>
-        `;
-        card.appendChild(editArea);
-      });
-    }
-
-    // 整体渲染（页面初始化/更新时调用）
-    function render() {
-      renderProfile();
-      renderTags();
-      renderProjects();
-    }
-
-    // ====================== 管理员权限 ======================
-    let isAdmin = false;
-    document.getElementById("adminBtn").onclick = () => {
-      const pwd = prompt("请输入管理员密码：");
-      if (pwd === ADMIN_PASSWORD) {
-        isAdmin = true;
-        alert("登录成功！现在可以编辑内容");
-        document.getElementById("adminBtn").innerText = "已登录";
-        // 显示所有编辑区域
-        document.querySelectorAll(".edit-area").forEach(el => el.style.display = "block");
-        render();
-      } else {
-        alert("密码错误，请重新输入");
-      }
+function renderProfile(){
+  document.getElementById("profileText").innerText = profile;
+  document.getElementById("profileInput").value = profile;
+}
+function renderTags(){
+  const c = document.getElementById("tagsContainer");
+  c.innerHTML = '<div class="tag active" data-tag="all">全部</div>';
+  tags.forEach(t=>{
+    let el = document.createElement("div");
+    el.className="tag"; el.dataset.tag=t; el.innerText=t;
+    el.onclick=()=>{
+      document.querySelectorAll(".tag").forEach(e=>e.classList.remove("active"));
+      el.classList.add("active"); filterProjects(t);
     };
-
-    // ====================== 编辑功能（个人简介） ======================
-    // 切换个人简介编辑状态
-    function toggleEdit(type) {
-      if (type === "profile") {
-        const editArea = document.getElementById("profileEdit");
-        editArea.style.display = editArea.style.display === "none" ? "block" : "none";
-      }
-    }
-
-    // 保存个人简介
-    function saveProfile() {
-      const newProfile = document.getElementById("profileInput").value.trim();
-      if (newProfile) {
-        profile = newProfile;
-        renderProfile();
-        alert("保存成功！");
-        document.getElementById("profileEdit").style.display = "none";
-      } else {
-        alert("请输入个人简介内容");
-      }
-    }
-
-    // 取消编辑
-    function cancelEdit(type, index) {
-      if (type === "profile") {
-        document.getElementById("profileInput").value = profile;
-        document.getElementById("profileEdit").style.display = "none";
-      } else if (type === "project") {
-        document.getElementById(`projectEdit${index}`).style.display = "none";
-      }
-    }
-
-    // ====================== 编辑功能（作品） ======================
-    // 切换作品编辑状态
-    function toggleProjectEdit(index) {
-      const editArea = document.getElementById(`projectEdit${index}`);
-      editArea.style.display = editArea.style.display === "none" ? "block" : "none";
-    }
-
-    // 保存作品
-    function saveProject(index) {
-      const title = document.getElementById(`pTitle${index}`).value.trim();
-      const desc = document.getElementById(`pDesc${index}`).value.trim();
-      const img = document.getElementById(`pImg${index}`).value.trim();
-      const tagsInput = document.getElementById(`pTags${index}`).value.trim();
-      const detail = document.getElementById(`pDetail${index}`).value.trim();
-
-      // 验证必填项
-      if (!title || !desc || !img || !detail) {
-        alert("作品标题、简介、图片链接、详情不能为空");
-        return;
-      }
-
-      // 处理标签（去重、过滤空值）
-      const newTags = tagsInput.split(",").map(t => t.trim()).filter(t => t);
-      // 将新标签添加到全局标签列表（去重）
-      newTags.forEach(tag => {
-        if (!tags.includes(tag)) {
-          tags.push(tag);
-        }
-      });
-
-      // 更新作品信息
-      projects[index] = {
-        title,
-        desc,
-        img,
-        tags: newTags,
-        detail
-      };
-
-      render();
-      alert("作品保存成功！");
-      document.getElementById(`projectEdit${index}`).style.display = "none";
-    }
-
-    // 添加新作品
-    function addProject() {
-      projects.push({
-        title: "新作品",
-        desc: "请输入作品简介",
-        img: "https://picsum.photos/seed/new/600/400", // 默认图片
-        tags: [],
-        detail: "请输入作品详细描述"
-      });
-      render();
-      // 自动打开最后一个作品的编辑界面
-      const lastIndex = projects.length - 1;
-      toggleProjectEdit(lastIndex);
-      // 滚动到最后一个作品
-      document.getElementById(`projectEdit${lastIndex}`).scrollIntoView({ behavior: "smooth" });
-    }
-
-    // 删除作品
-    function deleteProject(index) {
-      if (confirm("确定要删除这个作品吗？删除后无法恢复！")) {
-        projects.splice(index, 1);
-        render();
-        alert("作品删除成功！");
-      }
-    }
-
-    // ====================== 作品详情页功能 ======================
-    // 打开详情页
-    function openDetail(index) {
-      const project = projects[index];
-      document.getElementById("detailImg").src = project.img;
-      document.getElementById("detailImg").alt = project.title;
-      document.getElementById("detailTitle").innerText = project.title;
-      document.getElementById("detailDesc").innerText = project.detail;
-
-      // 渲染详情页标签
-      const detailTags = document.getElementById("detailTags");
-      detailTags.innerHTML = "";
-      project.tags.forEach(tag => {
-        const tagEl = document.createElement("div");
-        tagEl.className = "card-tag";
-        tagEl.innerText = tag;
-        detailTags.appendChild(tagEl);
-      });
-
-      // 显示详情页
-      document.getElementById("detailModal").style.display = "flex";
-    }
-
-    // 关闭详情页
-    function closeDetail() {
-      document.getElementById("detailModal").style.display = "none";
-    }
-
-    // 点击详情页外部关闭弹窗
-    window.onclick = (e) => {
-      const modal = document.getElementById("detailModal");
-      if (e.target === modal) {
-        closeDetail();
-      }
+    c.appendChild(el);
+  });
+}
+function filterProjects(tag){
+  document.querySelectorAll(".card").forEach(c=>{
+    let ts = c.dataset.tags.split(",");
+    c.style.display = tag=="all"||ts.includes(tag)?"block":"none";
+  });
+}
+function renderProjects(){
+  const list = document.getElementById("projectsList");
+  list.innerHTML = "";
+  projects.forEach((item,i)=>{
+    let card = document.createElement("div");
+    card.className="card"; card.dataset.tags=item.tags.join(",");
+    card.innerHTML = `
+      <img src="${item.img}" class="card-img">
+      <div class="card-content">
+        <h3>${item.title}</h3>
+        <div class="card-tags">${item.tags.map(t=>`<div class="card-tag">${t}</div>`).join("")}</div>
+        <p class="card-desc">${item.desc}</p>
+        <div class="edit-area">
+          <button class="admin-edit" onclick="toggleProjectEdit(${i})">编辑</button>
+          <button class="admin-delete" onclick="deleteProject(${i})">删除</button>
+        </div>
+      </div>
+      <div class="edit-area" id="projectEdit${i}">
+        <input id="pTitle${i}" value="${item.title}">
+        <textarea id="pDesc${i}" rows="2">${item.desc}</textarea>
+        <input id="pImg${i}" value="${item.img}">
+        <input id="pTags${i}" value="${item.tags.join(",")}">
+        <textarea id="pDetail${i}" rows="3">${item.detail}</textarea>
+        <div class="btn-group">
+          <button class="save-btn" onclick="saveProject(${i})">保存</button>
+          <button class="cancel-btn" onclick="cancelEdit('project',${i})">取消</button>
+        </div>
+      </div>`;
+    card.onclick=e=>{
+      if(!e.target.classList.contains("admin-edit")&&!e.target.classList.contains("admin-delete"))
+        openDetail(i);
     };
+    list.appendChild(card);
+  });
+}
+function render(){renderProfile();renderTags();renderProjects();}
 
-    // 初始化页面
+let isAdmin=false;
+document.getElementById("adminBtn").onclick=()=>{
+  if(prompt("请输入管理员密码：")==ADMIN_PASSWORD){
+    isAdmin=true; alert("登录成功！");
+    document.getElementById("adminBtn").innerText="已登录";
+    document.querySelectorAll(".edit-area").forEach(e=>e.style.display="block");
     render();
-  </script>
+  }else alert("密码错误");
+};
+
+function toggleEdit(t){
+  if(t=="profile"){
+    let e=document.getElementById("profileEdit");
+    e.style.display=e.style.display=="block"?"none":"block";
+  }
+}
+function saveProfile(){
+  profile=document.getElementById("profileInput").value;
+  renderProfile(); alert("保存成功");
+  document.getElementById("profileEdit").style.display="none";
+}
+function cancelEdit(t,i){
+  if(t=="profile") document.getElementById("profileEdit").style.display="none";
+  else document.getElementById(`projectEdit${i}`).style.display="none";
+}
+function toggleProjectEdit(i){
+  let e=document.getElementById(`projectEdit${i}`);
+  e.style.display=e.style.display=="block"?"none":"block";
+}
+function saveProject(i){
+  let t=document.getElementById(`pTitle${i}`).value;
+  let d=document.getElementById(`pDesc${i}`).value;
+  let im=document.getElementById(`pImg${i}`).value;
+  let ts=document.getElementById(`pTags${i}`).value.split(",").map(x=>x.trim()).filter(x=>x);
+  let dt=document.getElementById(`pDetail${i}`).value;
+  projects[i]={title:t,desc:d,img:im,tags:ts,detail:dt};
+  ts.forEach(tag=>{if(!tags.includes(tag))tags.push(tag)});
+  render(); alert("保存成功");
+  document.getElementById(`projectEdit${i}`).style.display="none";
+}
+function addProject(){
+  projects.push({title:"新作品",desc:"描述",img:"https://picsum.photos/600/400",tags:[],detail:"详情"});
+  render(); toggleProjectEdit(projects.length-1);
+}
+function deleteProject(i){
+  if(confirm("确定删除此作品？删除后无法恢复！")){projects.splice(i,1);render();alert("已删除");}
+}
+function openDetail(i){
+  let p=projects[i];
+  document.getElementById("detailImg").src=p.img;
+  document.getElementById("detailTitle").innerText=p.title;
+  document.getElementById("detailDesc").innerText=p.detail;
+  let tg=document.getElementById("detailTags");
+  tg.innerHTML=p.tags.map(x=>`<div class="card-tag">${x}</div>`).join("");
+  document.getElementById("detailModal").style.display="flex";
+  document.body.style.overflow="hidden";
+}
+function closeDetail(){
+  document.getElementById("detailModal").style.display="none";
+  document.body.style.overflow="auto";
+}
+window.onclick=e=>{
+  if(e.target==document.getElementById("detailModal"))closeDetail();
+};
+render();
+</script>
 </body>
 </html>
