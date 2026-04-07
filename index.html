@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>个人作品集 | 古风雅集</title>
+  <title>古风 · 作品集</title>
   <style>
     * {
       margin: 0;
@@ -22,7 +22,6 @@
       background-size: cover;
       background-position: center;
       background-blend-mode: soft-light;
-      background-opacity: 0.1;
     }
 
     .container {
@@ -31,7 +30,6 @@
       width: 100%;
     }
 
-    /* 标题区：书法 + 祥云边框 */
     header {
       position: relative;
       background: rgba(255, 252, 247, 0.96);
@@ -74,7 +72,6 @@
       gap: 1rem;
     }
 
-    /* 书法标题 */
     header h1 {
       font-size: clamp(1.8rem, 4vw, 2.8rem);
       color: #3d2a19;
@@ -99,7 +96,6 @@
       background: #5a3519;
     }
 
-    /* 模块：回纹 + 水墨边框 */
     .section {
       position: relative;
       background: rgba(255,252,247,0.96);
@@ -113,23 +109,18 @@
     .section::before {
       content: '';
       position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
       border: 1px dashed #d4b89a;
       border-radius: 8px;
       opacity: 0.4;
       pointer-events: none;
       z-index: 0;
     }
-
     .section > * {
       position: relative;
       z-index: 1;
     }
 
-    /* 标题：书法小标题 + 左竖线 */
     h2 {
       margin-bottom: 1.4rem;
       color: #3d2a19;
@@ -147,7 +138,6 @@
       font-size: 1rem;
     }
 
-    /* 国风标签 */
     .tags-container {
       display: flex;
       flex-wrap: wrap;
@@ -178,14 +168,12 @@
       background: #e9d9c5;
     }
 
-    /* 作品布局：PC 3列 / 手机 1列 */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 2rem;
     }
 
-    /* 卡片：水墨风 + 祥云暗纹 */
     .card {
       position: relative;
       background: #fff;
@@ -199,10 +187,7 @@
     .card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background-image: url('https://picsum.photos/id/331/300/300');
       background-size: 120px;
       background-repeat: repeat;
@@ -264,7 +249,6 @@
       -webkit-box-orient: vertical;
     }
 
-    /* 按钮国风 */
     .admin-edit, .admin-delete, .add-btn, .save-btn, .cancel-btn, .detail-btn {
       border-radius: 6px;
       font-size: 0.85rem;
@@ -317,7 +301,6 @@
       margin-top: 0.7rem;
     }
 
-    /* 详情弹窗：浓古风 */
     .detail-modal {
       position: fixed;
       top: 0; left: 0;
@@ -384,7 +367,6 @@
       font-size: 1.05rem;
     }
 
-    /* 移动端适配 */
     @media (max-width: 768px) {
       body { padding: 1rem; }
       .grid { grid-template-columns: 1fr; }
@@ -422,12 +404,11 @@
     <div class="tags-container" id="tagsContainer">
       <div class="tag active" data-tag="all">全部</div>
     </div>
-    <button class="add-btn edit-area" onclick="addProject()">添加作品</button>
+    <button class="add-btn edit-area" onclick="addProject()">添加新作品</button>
     <div class="grid" id="projectsList"></div>
   </div>
 </div>
 
-<!-- 详情弹窗 -->
 <div class="detail-modal" id="detailModal">
   <div class="detail-content">
     <span class="close-detail" onclick="closeDetail()">&times;</span>
@@ -442,9 +423,13 @@
 </div>
 
 <script>
-const ADMIN_PASSWORD = "123456";
+// ====================== 密码已改为 881111 ======================
+const ADMIN_PASSWORD = "881111";
+
 let profile = "专注国风文化创作与设计，致力于传统文化现代表达。";
 let tags = ["国风插画", "文创设计", "UI设计", "摄影", "书法"];
+
+// 作品数据：包含标题、简介、图片、标签、详细文章内容
 let projects = [
   {
     title: "国风山水插画",
@@ -452,13 +437,15 @@ let projects = [
     img: "https://picsum.photos/id/18/600/400",
     tags: ["国风插画","文创设计"],
     detail: "本作品以传统山水画为灵感，结合现代扁平风格，用柔和的大地色系呈现山水意境，适合文创周边、包装、海报等多场景使用。"
-  },{
+  },
+  {
     title: "新中式文创礼盒",
     desc: "融合传统纹样与现代简约设计，打造雅致国风礼盒。",
     img: "https://picsum.photos/id/1048/600/400",
     tags: ["文创设计"],
     detail: "整体采用木纹、祥云、回纹等经典元素，配色沉稳雅致，适合节日礼品、伴手礼、企业定制等场景，兼具文化感与实用性。"
-  },{
+  },
+  {
     title: "古风摄影作品集",
     desc: "以园林、古建筑为场景，拍摄东方意境人像与风光。",
     img: "https://picsum.photos/id/164/600/400",
@@ -467,10 +454,13 @@ let projects = [
   }
 ];
 
+// 渲染简介
 function renderProfile(){
   document.getElementById("profileText").innerText = profile;
   document.getElementById("profileInput").value = profile;
 }
+
+// 渲染标签
 function renderTags(){
   const c = document.getElementById("tagsContainer");
   c.innerHTML = '<div class="tag active" data-tag="all">全部</div>';
@@ -479,118 +469,180 @@ function renderTags(){
     el.className="tag"; el.dataset.tag=t; el.innerText=t;
     el.onclick=()=>{
       document.querySelectorAll(".tag").forEach(e=>e.classList.remove("active"));
-      el.classList.add("active"); filterProjects(t);
+      el.classList.add("active");
+      filterProjects(t);
     };
     c.appendChild(el);
   });
 }
+
+// 按标签筛选
 function filterProjects(tag){
   document.querySelectorAll(".card").forEach(c=>{
     let ts = c.dataset.tags.split(",");
     c.style.display = tag=="all"||ts.includes(tag)?"block":"none";
   });
 }
+
+// 渲染作品列表（带编辑区域）
 function renderProjects(){
   const list = document.getElementById("projectsList");
   list.innerHTML = "";
   projects.forEach((item,i)=>{
     let card = document.createElement("div");
-    card.className="card"; card.dataset.tags=item.tags.join(",");
+    card.className="card";
+    card.dataset.tags=item.tags.join(",");
+
     card.innerHTML = `
       <img src="${item.img}" class="card-img">
       <div class="card-content">
         <h3>${item.title}</h3>
-        <div class="card-tags">${item.tags.map(t=>`<div class="card-tag">${t}</div>`).join("")}</div>
+        <div class="card-tags">
+          ${item.tags.map(t=>`<div class="card-tag">${t}</div>`).join("")}
+        </div>
         <p class="card-desc">${item.desc}</p>
-        <div class="edit-area">
-          <button class="admin-edit" onclick="toggleProjectEdit(${i})">编辑</button>
-          <button class="admin-delete" onclick="deleteProject(${i})">删除</button>
+        <div class="edit-area" style="margin-top:1rem;padding-top:1rem;border-top:1px solid #e0d0bc;">
+          <button class="admin-edit" onclick="toggleProjectEdit(${i})">编辑作品</button>
+          <button class="admin-delete" onclick="deleteProject(${i})">删除作品</button>
         </div>
       </div>
-      <div class="edit-area" id="projectEdit${i}">
-        <input id="pTitle${i}" value="${item.title}">
-        <textarea id="pDesc${i}" rows="2">${item.desc}</textarea>
-        <input id="pImg${i}" value="${item.img}">
-        <input id="pTags${i}" value="${item.tags.join(",")}">
-        <textarea id="pDetail${i}" rows="3">${item.detail}</textarea>
+
+      <!-- 编辑区域：可修改标题、图片、简介、文章详情 -->
+      <div class="edit-area" id="projectEdit${i}" style="padding:1rem;">
+        <input id="pTitle${i}" placeholder="作品标题" value="${item.title}">
+        <input id="pImg${i}" placeholder="作品图片链接" value="${item.img}">
+        <textarea id="pDesc${i}" rows="2" placeholder="简短介绍">${item.desc}</textarea>
+        <input id="pTags${i}" placeholder="标签用逗号隔开：国风,文创,书法" value="${item.tags.join(",")}">
+        <textarea id="pDetail${i}" rows="4" placeholder="详细文章内容">${item.detail}</textarea>
         <div class="btn-group">
-          <button class="save-btn" onclick="saveProject(${i})">保存</button>
+          <button class="save-btn" onclick="saveProject(${i})">保存修改</button>
           <button class="cancel-btn" onclick="cancelEdit('project',${i})">取消</button>
         </div>
-      </div>`;
+      </div>
+    `;
+
     card.onclick=e=>{
-      if(!e.target.classList.contains("admin-edit")&&!e.target.classList.contains("admin-delete"))
+      if(!e.target.classList.contains("admin-edit") && !e.target.classList.contains("admin-delete"))
         openDetail(i);
     };
     list.appendChild(card);
   });
 }
-function render(){renderProfile();renderTags();renderProjects();}
 
+function render(){
+  renderProfile();
+  renderTags();
+  renderProjects();
+}
+
+// 管理员登录
 let isAdmin=false;
 document.getElementById("adminBtn").onclick=()=>{
-  if(prompt("请输入管理员密码：")==ADMIN_PASSWORD){
-    isAdmin=true; alert("登录成功！");
-    document.getElementById("adminBtn").innerText="已登录";
+  if(prompt("请输入管理员密码：") === ADMIN_PASSWORD){
+    isAdmin = true;
+    alert("登录成功！现在可以管理作品");
+    document.getElementById("adminBtn").innerText = "已登录";
     document.querySelectorAll(".edit-area").forEach(e=>e.style.display="block");
     render();
-  }else alert("密码错误");
+  } else {
+    alert("密码错误");
+  }
 };
 
-function toggleEdit(t){
-  if(t=="profile"){
-    let e=document.getElementById("profileEdit");
-    e.style.display=e.style.display=="block"?"none":"block";
+// 编辑简介
+function toggleEdit(type){
+  if(type==="profile"){
+    let e = document.getElementById("profileEdit");
+    e.style.display = e.style.display==="block" ? "none" : "block";
   }
 }
 function saveProfile(){
-  profile=document.getElementById("profileInput").value;
-  renderProfile(); alert("保存成功");
-  document.getElementById("profileEdit").style.display="none";
+  profile = document.getElementById("profileInput").value;
+  renderProfile();
+  alert("保存成功");
+  document.getElementById("profileEdit").style.display = "none";
 }
-function cancelEdit(t,i){
-  if(t=="profile") document.getElementById("profileEdit").style.display="none";
-  else document.getElementById(`projectEdit${i}`).style.display="none";
-}
+
+// 作品管理：编辑开关
 function toggleProjectEdit(i){
-  let e=document.getElementById(`projectEdit${i}`);
-  e.style.display=e.style.display=="block"?"none":"block";
+  let e = document.getElementById(`projectEdit${i}`);
+  e.style.display = e.style.display==="block" ? "none" : "block";
 }
+
+// 保存作品修改（核心功能）
 function saveProject(i){
-  let t=document.getElementById(`pTitle${i}`).value;
-  let d=document.getElementById(`pDesc${i}`).value;
-  let im=document.getElementById(`pImg${i}`).value;
-  let ts=document.getElementById(`pTags${i}`).value.split(",").map(x=>x.trim()).filter(x=>x);
-  let dt=document.getElementById(`pDetail${i}`).value;
-  projects[i]={title:t,desc:d,img:im,tags:ts,detail:dt};
-  ts.forEach(tag=>{if(!tags.includes(tag))tags.push(tag)});
-  render(); alert("保存成功");
-  document.getElementById(`projectEdit${i}`).style.display="none";
+  let title = document.getElementById(`pTitle${i}`).value.trim();
+  let img   = document.getElementById(`pImg${i}`).value.trim();
+  let desc  = document.getElementById(`pDesc${i}`).value.trim();
+  let tagStr= document.getElementById(`pTags${i}`).value.trim();
+  let detail= document.getElementById(`pDetail${i}`).value.trim();
+
+  if(!title || !img || !desc || !detail){
+    alert("请填写完整：标题、图片、简介、详情");
+    return;
+  }
+
+  let newTags = tagStr.split(",").map(x=>x.trim()).filter(x=>x);
+  projects[i] = { title, img, desc, tags:newTags, detail };
+
+  // 自动添加新标签
+  newTags.forEach(t=>{ if(!tags.includes(t)) tags.push(t) });
+
+  render();
+  alert("作品已保存");
+  document.getElementById(`projectEdit${i}`).style.display = "none";
 }
+
+// 新增作品
 function addProject(){
-  projects.push({title:"新作品",desc:"描述",img:"https://picsum.photos/600/400",tags:[],detail:"详情"});
-  render(); toggleProjectEdit(projects.length-1);
+  projects.push({
+    title: "新作品",
+    img: "https://picsum.photos/600/400",
+    desc: "请输入简介",
+    tags: [],
+    detail: "请输入详细文章内容"
+  });
+  render();
+  toggleProjectEdit(projects.length-1);
 }
+
+// 删除作品
 function deleteProject(i){
-  if(confirm("确定删除此作品？删除后无法恢复！")){projects.splice(i,1);render();alert("已删除");}
+  if(confirm("确定删除该作品？删除后无法恢复！")){
+    projects.splice(i,1);
+    render();
+    alert("已删除");
+  }
 }
+
+function cancelEdit(type,i){
+  if(type==="profile"){
+    document.getElementById("profileEdit").style.display="none";
+  }else{
+    document.getElementById(`projectEdit${i}`).style.display="none";
+  }
+}
+
+// 详情弹窗
 function openDetail(i){
-  let p=projects[i];
-  document.getElementById("detailImg").src=p.img;
-  document.getElementById("detailTitle").innerText=p.title;
-  document.getElementById("detailDesc").innerText=p.detail;
-  let tg=document.getElementById("detailTags");
-  tg.innerHTML=p.tags.map(x=>`<div class="card-tag">${x}</div>`).join("");
-  document.getElementById("detailModal").style.display="flex";
-  document.body.style.overflow="hidden";
+  let p = projects[i];
+  document.getElementById("detailImg").src = p.img;
+  document.getElementById("detailTitle").innerText = p.title;
+  document.getElementById("detailDesc").innerText = p.detail;
+  document.getElementById("detailTags").innerHTML =
+    p.tags.map(x=>`<div class="card-tag">${x}</div>`).join("");
+  document.getElementById("detailModal").style.display = "flex";
+  document.body.style.overflow = "hidden";
 }
 function closeDetail(){
-  document.getElementById("detailModal").style.display="none";
-  document.body.style.overflow="auto";
+  document.getElementById("detailModal").style.display = "none";
+  document.body.style.overflow = "auto";
 }
-window.onclick=e=>{
-  if(e.target==document.getElementById("detailModal"))closeDetail();
+window.onclick = e=>{
+  if(e.target === document.getElementById("detailModal")) closeDetail();
 };
+
+// 初始化
 render();
 </script>
 </body>
